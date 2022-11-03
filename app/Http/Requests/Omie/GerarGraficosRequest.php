@@ -10,7 +10,7 @@ class GerarGraficosRequest extends FormRequest
     {
         return [
             'empresa' => ['exists:empresas,id'],
-            'ano' => ['int', 'min:2015', 'max:' . now()->year],
+            'ano' => ['int', 'min:2021', 'max:' . now()->year],
         ];
     }
 

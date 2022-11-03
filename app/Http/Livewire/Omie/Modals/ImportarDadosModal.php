@@ -37,7 +37,7 @@ class ImportarDadosModal extends ModalComponent
 
         $anoFinal = now()->year;
 
-        for ($ano = 2015; $ano <= $anoFinal; $ano++) {
+        for ($ano = 2021; $ano <= $anoFinal; $ano++) {
             $anos[] = $ano;
         }
 
