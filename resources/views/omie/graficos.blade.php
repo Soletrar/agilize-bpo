@@ -13,12 +13,12 @@
                         <canvas id="ReceitaDespesaChart" height="200"></canvas>
                     </div>
 
-                    <div class="h-80 mb-10 p-5 pb-16 border-b-2">
-                        <canvas id="faturamentoChart" height="80"></canvas>
+                    <div class="h-96 mb-10 p-5 pb-16 border-b-2">
+                        <canvas id="faturamentoChart" height="200"></canvas>
                     </div>
 
                     <div class="h-96 mb-10 p-5">
-                        <canvas id="despesasChart" height="80"></canvas>
+                        <canvas id="despesasChart" height="200"></canvas>
                     </div>
                 </div>
             </div>
