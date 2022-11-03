@@ -9,8 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="h-80 mb-10 p-5 pb-16 border-b-2">
-                        <canvas id="ReceitaDespesaChart" height="80"></canvas>
+                    <div class="h-96 mb-10 p-5 pb-16 border-b-2">
+                        <canvas id="ReceitaDespesaChart" height="200"></canvas>
                     </div>
 
                     <div class="h-80 mb-10 p-5 pb-16 border-b-2">
