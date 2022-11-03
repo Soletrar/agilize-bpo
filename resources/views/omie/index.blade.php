@@ -32,11 +32,9 @@
                         <i class="fa-solid fa-chart-simple"></i> Gerar Gráficos
                     </button>
 
-                    @if(auth()->user()->empresa_id != null && auth()->user()->empresa->hasFluxoCaixa())
-                        <a href="{{route('dashboard.omie.download-fluxo', ['empresa' => auth()->user()->empresa_id])}}" type="button" class="mb-3 btn-primary" target="_blank">
-                            <i class="fa-solid fa-download"></i> Baixar Fluxo de Caixa
-                        </a>
-                    @endif
+                    <button onclick="Livewire.emit('openModal', 'omie.modals.download-fluxo-modal')" class="mb-3 btn-primary" target="_blank">
+                        <i class="fa-solid fa-download"></i> Baixar Fluxo de Caixa
+                    </button>
 
                     @if(auth()->user()->admin)
                         <button type="button" class="mb-3 btn-primary" onclick="Livewire.emit('openModal', 'omie.modals.importar-dados-modal')">

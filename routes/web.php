@@ -31,7 +31,6 @@ Route::group(['middleware' => 'auth', 'as' => 'dashboard.'], function () {
             Route::post('graficos', 'graficos')->name('graficos');
             Route::post('/', 'import')->name('import')->middleware('isAdmin');
             Route::post('/fluxo', 'importFluxo')->name('import-fluxo')->middleware('isAdmin');
-            Route::get('/fluxo/{empresa}/download', 'downloadFluxo')->name('download-fluxo');
         });
     });
 

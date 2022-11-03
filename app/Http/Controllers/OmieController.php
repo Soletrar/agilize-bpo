@@ -13,7 +13,6 @@ use App\Models\Tipo;
 use App\Repositories\ReceitaDespesaRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class OmieController extends Controller
 {
@@ -110,27 +109,14 @@ class OmieController extends Controller
     public function importFluxo(ImportarFluxoCaixaRequest $request)
     {
         $empresa = Empresa::find($request->input('empresa'));
-        $empresa->deleteFluxoCaixa();
+        $empresa->deleteFluxoCaixa($request->input('ano'));
 
         $file = $request->file('file');
 
-        $file->storeAs($empresa->id, $file->getClientOriginalName(), 'omieFluxo');
+        $file->storeAs($empresa->id . '/' . $request->input('ano'), $file->getClientOriginalName(), 'omieFluxo');
 
         sweetalert()->addSuccess('Arquivo importado com sucesso!', 'Operação Concluída');
 
         return redirect()->route('dashboard.omie.index');
-    }
-
-    public function downloadFluxo(Empresa $empresa)
-    {
-        if (!$empresa->hasFluxoCaixa()) {
-            throw new NotFoundHttpException();
-        }
-
-        if (!auth()->user()->admin && auth()->user()->empresa_id != $empresa->id) {
-            abort(401);
-        }
-
-        return \Storage::disk('omieFluxo')->download($empresa->getFluxoCaixa());
     }
 }

@@ -9,21 +9,21 @@ class Empresa extends Model
 {
     protected $guarded = [];
 
-    public function hasFluxoCaixa(): bool
+    public function hasFluxoCaixa(int $ano): bool
     {
-        $files = Storage::disk('omieFluxo')->files($this->id);
+        $files = Storage::disk('omieFluxo')->files($this->id . '/' . $ano);
         return sizeof($files) > 0;
     }
 
-    public function getFluxoCaixa()
+    public function getFluxoCaixa(int $ano)
     {
-        return Storage::disk('omieFluxo')->files($this->id)[0];
+        return Storage::disk('omieFluxo')->files($this->id . '/' . $ano)[0];
     }
 
-    public function deleteFluxoCaixa()
+    public function deleteFluxoCaixa(int $ano)
     {
-        if ($this->hasFluxoCaixa()) {
-            Storage::disk('omieFluxo')->deleteDir($this->id);
+        if ($this->hasFluxoCaixa($ano)) {
+            Storage::disk('omieFluxo')->deleteDir($this->id . '/' . $ano);
         }
     }
 }
