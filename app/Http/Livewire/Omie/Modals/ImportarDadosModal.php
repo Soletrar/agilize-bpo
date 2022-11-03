@@ -20,7 +20,7 @@ class ImportarDadosModal extends ModalComponent
     {
         $meses = [];
 
-        $monthsPeriod = now()->startOfYear()->monthsUntil(now());
+        $monthsPeriod = now()->startOfYear()->monthsUntil(now()->endOfYear());
         foreach ($monthsPeriod as $month) {
             $meses[] = [
                 'name' => ucfirst($month->monthName),

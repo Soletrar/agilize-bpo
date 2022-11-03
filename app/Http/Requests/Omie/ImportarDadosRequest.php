@@ -10,7 +10,7 @@ class ImportarDadosRequest extends FormRequest
     {
         return [
             'ano' => ['required', 'int', 'min:2021', 'max:' . now()->year],
-            'mes' => ['required', 'int', 'min:1', 'max:' . now()->startOfYear()->monthsUntil(now())->end->month],
+            'mes' => ['required', 'int', 'min:1', 'max:12'],
             'file' => ['required', 'file', 'mimes:txt,csv'],
             'empresa' => ['required', 'exists:empresas,id']
         ];
