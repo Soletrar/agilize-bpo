@@ -79,7 +79,7 @@ class Cartoes extends Component
     protected function updatedAno()
     {
         $this->mes = 0;
-        $this->nomeMes = 'Não definido';
+        $this->nomeMes = 'Anual';
         $this->updateMeses();
     }
 
