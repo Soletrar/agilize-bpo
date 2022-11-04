@@ -96,7 +96,7 @@
         data = {
             labels: labels,
             datasets: [{
-                label: 'Faturamento',
+                label: 'Resultado',
                 data: [
                     @foreach($faturamentoDatas as $data)
                         {{$data}},
