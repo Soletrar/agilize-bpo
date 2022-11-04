@@ -76,7 +76,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Receitas e Despesas Anuais ({{$ano}})'
+                        text: 'Receitas e Despesas ({{$ano}})'
                     },
                 },
                 locale: 'pt-BR'
@@ -120,7 +120,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Resultado Anual ({{$ano}})'
+                        text: 'Resultado ({{$ano}})'
                     },
                 },
                 locale: 'pt-BR'
@@ -164,7 +164,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Despesas Anuais ({{$ano}})'
+                        text: 'Despesas ({{$ano}})'
                     },
                 },
                 // scales: {
