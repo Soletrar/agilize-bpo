@@ -45,9 +45,5 @@
                 @endif
             </div>
         </div>
-
-        <div class="mb-10 p-5">
-            <canvas id="detalhesDespesasChart"></canvas>
-        </div>
     </div>
 </div>
