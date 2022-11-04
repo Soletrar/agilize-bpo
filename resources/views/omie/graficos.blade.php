@@ -181,6 +181,5 @@
 
         ctx = document.getElementById('despesasChart').getContext('2d');
         new Chart(ctx, config) // despesas chart
-
     </script>
 </x-app-layout>

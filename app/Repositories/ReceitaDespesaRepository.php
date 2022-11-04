@@ -101,4 +101,24 @@ class ReceitaDespesaRepository
             ->whereDadoAno($ano)
             ->sum('valor');
     }
+
+    public function getValoresDetalhesDespesas(int $ano, int $empresaId): array
+    {
+        $tipoDespesa = Tipo::firstOrCreate(['nome' => 'DESPESAS']);
+
+        $detalhes = Dado::whereTipoId($tipoDespesa->id)
+            ->whereEmpresaId($empresaId)
+            ->whereDadoAno($ano)->pluck('detalhe')
+            ->unique()
+            ->toArray();
+
+        sort($detalhes);
+
+        $d = [];
+        foreach ($detalhes as $detalhe) {
+            $d[$detalhe] = Dado::whereDetalhe($detalhe)->sum('valor');
+        }
+
+        return $d;
+    }
 }

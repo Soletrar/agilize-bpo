@@ -6,7 +6,6 @@ use App\Http\Requests\ImportarFluxoCaixaRequest;
 use App\Http\Requests\Omie\GerarGraficosRequest;
 use App\Http\Requests\Omie\ImportarDadosRequest;
 use App\Models\Dado;
-use App\Models\Detalhe;
 use App\Models\Empresa;
 use App\Models\Grupo;
 use App\Models\Tipo;
@@ -21,7 +20,7 @@ class OmieController extends Controller
         return view('omie.index');
     }
 
-    public function graficos(ReceitaDespesaRepository $empresaDespesaRepository, GerarGraficosRequest $request)
+    public function graficos(ReceitaDespesaRepository $receitaDespesaRepository, GerarGraficosRequest $request)
     {
         $receitaDatas = [];
         $despesaDatas = [];
@@ -42,15 +41,17 @@ class OmieController extends Controller
         foreach ($meses as $mes) {
             $chartLabels[] = ucfirst(now()->startOfMonth()->setMonth($mes)->monthName);
 
-            $receitas = $empresaDespesaRepository->getReceitasPorMes($mes, $ano, $empresa->id);
-            $despesas = $empresaDespesaRepository->getDespesasPorMes($mes, $ano, $empresa->id);
+            $receitas = $receitaDespesaRepository->getReceitasPorMes($mes, $ano, $empresa->id);
+            $despesas = $receitaDespesaRepository->getDespesasPorMes($mes, $ano, $empresa->id);
 
             $receitaDatas[] = $receitas;
             $despesaDatas[] = $despesas;
             $faturamentoDatas[] = $receitas + $despesas;
         }
 
-        $despesasLabels = $empresaDespesaRepository->getGruposDeDespesas($empresa->id, $ano);
+        $despesasLabels = $receitaDespesaRepository->getGruposDeDespesas($empresa->id, $ano);
+
+        $detalhesDespesas = $receitaDespesaRepository->getValoresDetalhesDespesas($ano, $empresa->id);
 
         return view('omie.graficos', [
             'empresa' => $empresa,
@@ -60,7 +61,8 @@ class OmieController extends Controller
             'despesaDatas' => $despesaDatas,
             'faturamentoDatas' => $faturamentoDatas,
             'despesasLabels' => $despesasLabels,
-            'despesasGruposDatas' => $empresaDespesaRepository->getGruposDeDespesasDatas($empresa->id, $ano, $despesasLabels),
+            'despesasGruposDatas' => $receitaDespesaRepository->getGruposDeDespesasDatas($empresa->id, $ano, $despesasLabels),
+            'detalhesDespesas' => $detalhesDespesas
         ]);
     }
 
@@ -81,10 +83,10 @@ class OmieController extends Controller
             $data['periodo'] = $lineCsv[0];
             $data['mes'] = $lineCsv[1];
             $data['ordem'] = $lineCsv[2];
+            $data['detalhe'] = $lineCsv[3];
 
             $grupo = Grupo::firstOrCreate(['nome' => $lineCsv[4]]);
             $data['grupo_id'] = $grupo->id;
-            Detalhe::create(['nome' => $lineCsv[3], 'grupo_id' => $grupo->id]);
 
             $data['tipo_id'] = Tipo::firstOrCreate(['nome' => $lineCsv[5]])->id;
 
@@ -96,9 +98,7 @@ class OmieController extends Controller
             $data['dado_mes'] = $month;
             $data['empresa_id'] = $request->input('empresa');
 
-            $dado = Dado::create($data);
-
-
+            Dado::create($data);
         }
 
         sweetalert()->addSuccess('Os dados foram importados.', 'Operação Concluída');

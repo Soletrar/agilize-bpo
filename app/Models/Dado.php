@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Dado extends Model
 {
@@ -25,10 +24,5 @@ class Dado extends Model
     public function grupo(): BelongsTo
     {
         return $this->belongsTo(Grupo::class);
-    }
-
-    public function detalhes(): HasMany
-    {
-        return $this->hasMany(Detalhe::class);
     }
 }

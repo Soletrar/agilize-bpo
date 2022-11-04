@@ -18,7 +18,7 @@
                 </select>
             </div>
         </div>
-        <div class="flex flex-col lg:flex-row justify-center gap-2">
+        <div class="flex flex-col lg:flex-row justify-center gap-2 mb-4">
             <div class="rounded p-7 bg-green-100">
                 <p class="font-medium">Total de Receitas ({{$nomeMes}})</p>
                 <p class="font-bold text-xl">{{$receitaTotalMes}}</p>
@@ -44,6 +44,10 @@
                     <p class="font-bold text-xl">{{number_format($indice, 2)}}%</p>
                 @endif
             </div>
+        </div>
+
+        <div class="mb-10 p-5">
+            <canvas id="detalhesDespesasChart"></canvas>
         </div>
     </div>
 </div>

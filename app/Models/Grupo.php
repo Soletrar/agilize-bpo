@@ -9,6 +9,11 @@ class Grupo extends Model
 {
     protected $guarded = [];
 
+    public function dados(): HasMany
+    {
+        return $this->hasMany(Dado::class);
+    }
+
     public function detalhes(): HasMany
     {
         return $this->hasMany(Detalhe::class);

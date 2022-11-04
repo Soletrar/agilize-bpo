@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('periodo');
             $table->string('mes');
             $table->string('ordem');
-
+            $table->string('detalhe');
             $table->string('cliente_fornecedor');
             $table->date('vencimento')->nullable();
             $table->decimal('valor');

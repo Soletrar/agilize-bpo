@@ -72,7 +72,7 @@ class Cartoes extends Component
             'receitaTotalMes' => 'R$ ' . number_format($receitas, 2, ',', '.'),
             'despesaTotalMes' => 'R$ ' . number_format($despesas, 2, ',', '.'),
             'faturamentoTotalMes' => 'R$ ' . number_format($faturamento, 2, ',', '.'),
-            'indice' => $indice
+            'indice' => $indice,
         ]);
     }
 
