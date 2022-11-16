@@ -12,7 +12,7 @@ class EditarEmpresaModal extends ModalComponent
 
     protected $rules = [
         'empresa.nome' => 'required',
-        'empresa.cnpj' => 'required|integer'
+        'empresa.cnpj' => 'required'
     ];
 
     public function mount(Empresa $empresa)

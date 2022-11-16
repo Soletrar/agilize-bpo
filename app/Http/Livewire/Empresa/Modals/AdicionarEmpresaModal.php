@@ -18,7 +18,7 @@ class AdicionarEmpresaModal extends ModalComponent
 
     protected $rules = [
        'nome' => 'required',
-       'cnpj' => 'required|integer|unique:empresas'
+       'cnpj' => 'required|unique:empresas'
     ];
 
     public function criaEmpresa()
